@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Header from "../components/Header/Header";
 import Saludo from "../components/Saludo/Saludo";
+import Footer from "../components/Footer/Footer";
 import type { Curso } from "../types/Curso";
 
 const cursos: Curso[] = [
@@ -26,6 +27,7 @@ const cursos: Curso[] = [
 
 const HomePage = () => {
   return (
+    <>
     <section id="inicio">
       <Container className="mt-4">
         <Row>
@@ -38,6 +40,13 @@ const HomePage = () => {
         </Row>
       </Container>
     </section>
+    <section id="contacto" className="py-5">
+      <Container>
+        <h2 className="mb-3">Contacto y tareas</h2>
+        <Footer />
+      </Container>
+    </section>
+    </>
   );
 };
 
