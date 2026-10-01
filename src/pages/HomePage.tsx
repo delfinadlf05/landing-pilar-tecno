@@ -1,5 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
-import BotonColor from "../components/BotonColor/BotonColor";
+import Header from "../components/Header/Header";
+import Saludo from "../components/Saludo/Saludo";
+import Footer from "../components/Footer/Footer";
 import type { Curso } from "../types/Curso";
 
 const cursos: Curso[] = [
@@ -25,22 +27,26 @@ const cursos: Curso[] = [
 
 const HomePage = () => {
   return (
-    <Container className="mt-4">
-      <Row>
-        <Col md={6}>
-          <h1>Pilar tecno</h1>
-          <p>Bienvenido al curso de React</p>
-          <BotonColor />
-        </Col>
-        <Col md={6}>
-          <ul>
-            {cursos.map((curso) => (
-              <li key={curso.id}>{curso.nombre}</li>
-            ))}
-          </ul>
-        </Col>
-      </Row>
-    </Container>
+    <>
+    <section id="inicio">
+      <Container className="mt-4">
+        <Row>
+          <Col md={6}>
+            <Header cursos={cursos} />
+          </Col>
+          <Col md={6}>
+            <Saludo />
+          </Col>
+        </Row>
+      </Container>
+    </section>
+    <section id="contacto" className="py-5">
+      <Container>
+        <h2 className="mb-3">Contacto y tareas</h2>
+        <Footer />
+      </Container>
+    </section>
+    </>
   );
 };
 
