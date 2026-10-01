@@ -1,5 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import BarraNavegacion from "./components/BarraNavegacion/BarraNavegacion";
+import BotonColor from "./components/BotonColor/BotonColor";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
           <Col md={6}>
             <h1>Pilar tecno</h1>
             <p>Bienvenido al curso de React</p>
+            <BotonColor />
           </Col>
           <Col md={6}>
             {/* acá van los cursos, más adelante */}
