@@ -1,5 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Header from "../components/Header/Header";
+import Saludo from "../components/Saludo/Saludo";
 import type { Curso } from "../types/Curso";
 
 const cursos: Curso[] = [
@@ -32,7 +33,7 @@ const HomePage = () => {
             <Header cursos={cursos} />
           </Col>
           <Col md={6}>
-            {/* acá va el Saludo, en el próximo commit */}
+            <Saludo />
           </Col>
         </Row>
       </Container>
