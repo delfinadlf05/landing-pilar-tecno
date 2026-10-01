@@ -1,13 +1,28 @@
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-const BotonColor = () => {
-  const [colorTitulo, setColorTitulo] = useState("#1B2A4A");
+type BotonColorProps = {
+  colorActual: string;
+  onElegirColor: (color: string) => void;
+};
+
+const BotonColor = ({ colorActual, onElegirColor }: BotonColorProps) => {
+  const [colorElegido, setColorElegido] = useState(colorActual);
   const [mostrarModal, setMostrarModal] = useState(false);
+
+  const handleAbrir = () => {
+    setColorElegido(colorActual);
+    setMostrarModal(true);
+  };
+
+  const handleAceptar = () => {
+    onElegirColor(colorElegido);
+    setMostrarModal(false);
+  };
 
   return (
     <>
-      <Button onClick={() => setMostrarModal(true)}>Personalizar</Button>
+      <Button onClick={handleAbrir}>Personalizar</Button>
 
       <Modal show={mostrarModal} onHide={() => setMostrarModal(false)}>
         <Modal.Header closeButton>
@@ -16,15 +31,15 @@ const BotonColor = () => {
         <Modal.Body>
           <input
             type="color"
-            value={colorTitulo}
-            onChange={(e) => setColorTitulo(e.target.value)}
+            value={colorElegido}
+            onChange={(e) => setColorElegido(e.target.value)}
           />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setMostrarModal(false)}>
             Cancelar
           </Button>
-          <Button variant="primary" onClick={() => setMostrarModal(false)}>
+          <Button variant="primary" onClick={handleAceptar}>
             Aceptar
           </Button>
         </Modal.Footer>
