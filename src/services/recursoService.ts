@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Recurso } from "../types/Recurso";
+import type { Recurso, RecursoFormulario } from "../types/Recurso";
 
 // Dirección de la API de libros (curso de Node.js). Se puede cambiar con la
 // variable VITE_API_URL en un archivo .env (ver .env.example).
@@ -21,5 +21,36 @@ export const obtenerRecursos = async (): Promise<Recurso[]> => {
     return respuesta.data;
   } catch (error) {
     return lanzarError(error, "No se pudieron cargar los libros");
+  }
+};
+
+export const crearRecurso = async (
+  datos: RecursoFormulario,
+): Promise<Recurso> => {
+  try {
+    const respuesta = await axios.post(BASE_URL, datos);
+    return respuesta.data;
+  } catch (error) {
+    return lanzarError(error, "No se pudo crear el libro");
+  }
+};
+
+export const actualizarRecurso = async (
+  id: string,
+  datos: RecursoFormulario,
+): Promise<Recurso> => {
+  try {
+    const respuesta = await axios.put(`${BASE_URL}/${id}`, datos);
+    return respuesta.data;
+  } catch (error) {
+    return lanzarError(error, "No se pudo actualizar el libro");
+  }
+};
+
+export const eliminarRecurso = async (id: string): Promise<void> => {
+  try {
+    await axios.delete(`${BASE_URL}/${id}`);
+  } catch (error) {
+    lanzarError(error, "No se pudo eliminar el libro");
   }
 };
