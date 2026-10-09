@@ -10,7 +10,7 @@ const BarraNavegacion = () => {
         <Navbar.Collapse id="navbar-principal">
           <Nav className="ms-auto">
             <Nav.Link as={Link} to="/">Inicio</Nav.Link>
-            <Nav.Link as={Link} to="/libros">Libros</Nav.Link>
+            <Nav.Link as={Link} to="/tareas">Tareas</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

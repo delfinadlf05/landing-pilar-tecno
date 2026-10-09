@@ -15,11 +15,11 @@ const PaginaInicio = () => {
               Pilar Tecno
             </h1>
             <p className="lead text-secondary">
-              Bienvenido a la biblioteca de Pilar Tecno.
+              Gestor de tareas: organizá lo que tenés que hacer, con prioridades.
             </p>
             <div className="d-flex gap-2">
-              <Link to="/libros" className="btn btn-primary">
-                Ver libros
+              <Link to="/tareas" className="btn btn-primary">
+                Ver tareas
               </Link>
               <BotonColor
                 colorActual={colorTitulo}
