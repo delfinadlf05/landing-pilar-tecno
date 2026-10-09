@@ -1,21 +1,21 @@
 import { Modal, Button } from "react-bootstrap";
-import type { Recurso } from "../../types/Recurso";
+import type { Tarea } from "../../types/Tarea";
 
 type Props = {
-  libro: Recurso | null;
+  tarea: Tarea | null;
   error: string | null;
   onCancelar: () => void;
   onConfirmar: () => void;
 };
 
-const ModalConfirmarEliminar = ({ libro, error, onCancelar, onConfirmar }: Props) => {
+const ModalConfirmarEliminar = ({ tarea, error, onCancelar, onConfirmar }: Props) => {
   return (
-    <Modal show={!!libro} onHide={onCancelar} centered>
+    <Modal show={!!tarea} onHide={onCancelar} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Eliminar libro</Modal.Title>
+        <Modal.Title>Eliminar tarea</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        ¿Seguro que querés eliminar "{libro?.titulo}"?
+        ¿Seguro que querés eliminar la tarea "{tarea?.titulo}"?
         {error && <p className="text-danger mt-3 mb-0">{error}</p>}
       </Modal.Body>
       <Modal.Footer>
