@@ -26,3 +26,12 @@ export type FiltrosBusqueda = {
   prioridad: string;
   completada: string;
 };
+
+// Respuesta de GET /api/tareas/resumen
+export type Resumen = {
+  total: number;
+  completadas: number;
+  pendientes: number;
+  pendientesAltaPrioridad: number;
+  porPrioridad: Record<Prioridad, number>;
+};
