@@ -4,8 +4,8 @@ export type Recurso = {
   autor: string;
   categoria: string;
   estado: "Disponible" | "Prestado" | "Vencido";
-  fechaPrestamo?: string;
-  fechaDevolucion?: string;
+  fechaPrestamo?: string | null;
+  fechaDevolucion?: string | null;
 };
 
 // Lo que maneja el formulario de crear/editar: sin _id ni fechas,
@@ -14,3 +14,10 @@ export type RecursoFormulario = Pick<
   Recurso,
   "titulo" | "autor" | "categoria" | "estado"
 >;
+
+// Filtros del endpoint de búsqueda. Vacío ("") significa "sin filtrar".
+export type FiltrosBusqueda = {
+  autor: string;
+  categoria: string;
+  estado: string;
+};
