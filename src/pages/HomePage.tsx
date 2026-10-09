@@ -3,6 +3,7 @@ import Header from "../components/Header/Header";
 import Saludo from "../components/Saludo/Saludo";
 import Footer from "../components/Footer/Footer";
 import CursoCard from "../components/CursoCard/CursoCard";
+import ListaLibros from "../components/ListaLibros/ListaLibros";
 import type { Curso } from "../types/Curso";
 
 const cursos: Curso[] = [
@@ -39,6 +40,12 @@ const HomePage = () => {
               <Saludo />
             </Col>
           </Row>
+        </Container>
+      </section>
+
+      <section id="libros" className="py-5">
+        <Container>
+          <ListaLibros />
         </Container>
       </section>
 
