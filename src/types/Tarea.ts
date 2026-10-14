@@ -1,5 +1,8 @@
 export type Prioridad = "baja" | "media" | "alta";
 
+// Refleja lo que la API manda de verdad:
+// - fechaCompletada es null mientras la tarea está pendiente.
+// - descripcion y usuario pueden no venir (no son obligatorios en el modelo).
 export type Tarea = {
   _id: string;
   titulo: string;
@@ -7,6 +10,7 @@ export type Tarea = {
   completada: boolean;
   prioridad: Prioridad;
   fechaCompletada?: string | null;
+  usuario?: string | null;
   createdAt?: string;
   updatedAt?: string;
 };
