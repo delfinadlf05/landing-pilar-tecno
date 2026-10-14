@@ -28,6 +28,7 @@ const ListaTareas = () => {
   const [error, setError] = useState<string | null>(null);
   const [errorAccion, setErrorAccion] = useState<string | null>(null);
   const [resumen, setResumen] = useState<Resumen | null>(null);
+  const [errorResumen, setErrorResumen] = useState<string | null>(null);
   const [filtros, setFiltros] = useState<FiltrosBusqueda>({
     q: "",
     prioridad: "",
@@ -38,11 +39,20 @@ const ListaTareas = () => {
   const [tareaAEliminar, setTareaAEliminar] = useState<Tarea | null>(null);
   const [errorEliminar, setErrorEliminar] = useState<string | null>(null);
 
+  const hayFiltros =
+    filtros.q !== "" || filtros.prioridad !== "" || filtros.completada !== "";
+
   // Vuelve a pedir los números del panel (después de crear, editar, borrar, etc.)
   const refrescarResumen = useCallback(() => {
     obtenerResumen()
-      .then(setResumen)
-      .catch(() => setResumen(null));
+      .then((resultado) => {
+        setResumen(resultado);
+        setErrorResumen(null);
+      })
+      .catch((e) => {
+        setResumen(null);
+        setErrorResumen(mensajeError(e, "No se pudo cargar el resumen"));
+      });
   }, []);
 
   useEffect(() => {
@@ -154,6 +164,7 @@ const ListaTareas = () => {
         <Button onClick={abrirAgregar}>Agregar tarea</Button>
       </div>
 
+      {errorResumen && <p className="text-danger">{errorResumen}</p>}
       <PanelResumen resumen={resumen} />
 
       <FiltrosTareas filtros={filtros} onCambiar={cambiarFiltro} />
@@ -162,7 +173,11 @@ const ListaTareas = () => {
       {cargando && <p>Cargando...</p>}
       {error && <p className="text-danger">{error}</p>}
       {!cargando && !error && datos.length === 0 && (
-        <p className="text-secondary">No hay tareas que coincidan con la búsqueda.</p>
+        <p className="text-secondary">
+          {hayFiltros
+            ? "No hay tareas que coincidan con la búsqueda."
+            : "Todavía no hay tareas cargadas. ¡Agregá la primera!"}
+        </p>
       )}
       {!cargando && !error && (
         <Row className="g-3">

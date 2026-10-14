@@ -32,6 +32,10 @@ export const obtenerTareas = async (
     const respuesta = await axios.get(BASE_URL, { params: filtros });
     return respuesta.data;
   } catch (error) {
+    // Un 404 en el listado significa "no hay resultados": es una lista vacía.
+    if (axios.isAxiosError(error) && error.response?.status === 404) {
+      return [];
+    }
     return lanzarError(error, "No se pudieron cargar las tareas");
   }
 };
